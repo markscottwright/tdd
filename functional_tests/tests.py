@@ -1,11 +1,13 @@
 "Functional test script"
 
+from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import unittest
 
 
-class TestNewVisitor(unittest.TestCase):
+class TestNewVisitor(LiveServerTestCase):
+
     def setUp(self):
         self.browser = webdriver.Firefox()
         self.browser.implicitly_wait(3)
@@ -24,7 +26,7 @@ class TestNewVisitor(unittest.TestCase):
     def test_can_start_a_list_and_retrieve_it_later(self):
 
         # user opens our todo app
-        self.browser.get("http://localhost:8000")
+        self.browser.get(self.live_server_url)
 
         # She notices the page title and header mention to-do lists
         self.assertIn('To-Do', self.browser.title)
@@ -57,7 +59,3 @@ class TestNewVisitor(unittest.TestCase):
         self.check_for_row_in_list_table(
             '2: Use peacock feathers to make a fly')
         self.fail('Finish the test!')
-
-
-if __name__ == "__main__":
-    unittest.main()
