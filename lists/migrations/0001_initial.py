@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
             name='Item',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', auto_created=True,
-                    primary_key=True, serialize=False)),
+                 primary_key=True, serialize=False)),
             ],
         ),
     ]
