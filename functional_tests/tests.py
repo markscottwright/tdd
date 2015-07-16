@@ -1,13 +1,14 @@
 "Functional test script"
 
 from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import unittest
 import time
 
 
-class NewVisitorTest(LiveServerTestCase):
+class NewVisitorTest(StaticLiveServerTestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
@@ -106,7 +107,8 @@ class NewVisitorTest(LiveServerTestCase):
             512,
             delta=10)
 
-        # she starts a new list and sees the input is nicely centered there took
+        # she starts a new list and sees the input is nicely centered there
+        # took
         inputbox.send_keys('testing\n')
         inputbox = self.browser.find_element_by_id('id_new_item')
         self.assertAlmostEqual(
