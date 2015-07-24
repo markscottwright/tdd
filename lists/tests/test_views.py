@@ -14,7 +14,7 @@ class NewItemTest(TestCase):
         correct_list = List.objects.create()
 
         self.client.post(
-            '/lists/%d/add_item' % correct_list.id,
+            '/lists/%d/' % correct_list.id,
             data={'item_text': 'A new item for an existing list'})
 
     def tests_redirects_to_list_view(self):
@@ -22,7 +22,7 @@ class NewItemTest(TestCase):
         correct_list = List.objects.create()
 
         response = self.client.post(
-            '/lists/%d/add_item' % correct_list.id,
+            '/lists/%d/' % correct_list.id,
             data={'item_text': 'A new item for an existing list'})
 
         self.assertRedirects(response, '/lists/%d/' % correct_list.id)
